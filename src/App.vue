@@ -50,6 +50,7 @@
               </tr>
             </tbody>
           </table>
+          <Paginacao :total="total" :page="page" :itens-per-page="itensPerPage" @change-page="onChangePage"></Paginacao>
         </div>
       </div>
     </div>
@@ -58,6 +59,8 @@
 
 <script>
 import Bares from './Bares.vue'
+import Paginacao from './Paginacao.vue'
+
 export default {
   data() {
     return {
@@ -91,6 +94,7 @@ export default {
         response=>{
           t.bares = response.json()
           t.total = response.header['X-Total-Count']
+          console.log(t.bares);
         },
         error=>{
           console.log(error)
@@ -101,10 +105,10 @@ export default {
     searchBares() {
 
     }
-
   },
   components: {
-    Bares
+    Bares,
+    Paginacao
   }
 }
 </script>
