@@ -71,7 +71,8 @@ export default {
       page: 1,
       total: 0,
       selected: {},
-      itensPerPage: 10
+      itensPerPage: 10,
+      bares: {}
     }
   },
   methods: {
@@ -92,9 +93,9 @@ export default {
 
       this.$http.get(`/bares`).then(
         response=>{
-          t.bares = response.json()
-          t.total = response.header['X-Total-Count']
-          console.log(t.bares);
+          this.$set('bares', response.json());
+          this.$set('total', response.header['X-Total-Count']);
+          console.log(bares);
         },
         error=>{
           console.log(error)
